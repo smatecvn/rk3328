@@ -2,7 +2,7 @@
 
 services:
   mira:
-    image: sonnh911/openwrt:test
+    image: sonnh911/openwrt:${TAG}
     container_name: mira
     hostname: MIRA
     restart: always
@@ -24,8 +24,8 @@ services:
       - /sys:/sys:rw
       - /proc/asound:/host_proc_asound:ro
       - /proc/device-tree:/host_proc_dt:ro
-      - /home/admin:/home/mgwp
-      - /etc/netplan:/host-netplan
+      - /etc/netplan:/etc/netplan
+      - /root/mgwp/:/root/mgwp/
     ports:
       - "80:80"
       - "443:443"
