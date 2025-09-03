@@ -14,7 +14,7 @@ services:
       - SYS_ADMIN
       - NET_RAW
       - SYSLOG
-      - CAP_SYS_TIME #for setup time
+      - SYS_TIME #for setup time
     security_opt:
       - seccomp=unconfined
     devices:
