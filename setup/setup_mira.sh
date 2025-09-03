@@ -13,8 +13,6 @@ cp netcfg-watcher.sh /usr/local/bin/netcfg-watcher.sh
 chmod +x /usr/local/bin/netcfg-watcher.sh
 cp setup_leds.sh /usr/local/bin/setup_leds.sh
 chmod +x /usr/local/bin/setup_leds.sh
-#cp check_and_start_container.sh /usr/local/bin/check_and_start_container.sh
-#chmod +x /usr/local/bin/check_and_start_container.sh
 
 # Setup tools
 apt update  && apt install -y inotify-tools
@@ -39,14 +37,8 @@ systemctl daemon-reload
 systemctl enable pre-docker-gpio.service
 systemctl start pre-docker-gpio.service
 
-# Setup network leds (Link + Traffic)
-cp setup-leds.service /etc/systemd/system/setup-leds.service
-systemctl daemon-reload
-systemctl enable setup-leds.service
-systemctl start setup-leds.service
-
 # Setup crontab, monitor mira container
-#(crontab -l 2>/dev/null; echo "* * * * * /usr/local/bin/check_and_start_container.sh") | crontab -
+(crontab -l 2>/dev/null; echo "*/1 * * * * /usr/local/bin/setup_leds.sh") | crontab -
 
 # Setup /dev/ttyUSB3 used for mgwp app. ModemManager use /dev/ttyUSB2 by default
 touch /etc/udev/rules.d/99-mm-ignore.rules
@@ -55,5 +47,5 @@ udevadm control --reload-rules
 udevadm trigger
 
 # Copy netplan yaml
-mv /etc/netplan/*.yaml /etc/netplan/*.yaml.bk 
+rm /etc/netplan/*.*
 cp *.yaml /etc/netplan

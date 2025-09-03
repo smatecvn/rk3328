@@ -17,7 +17,7 @@ services:
       - "/dev/gpiochip5"
       - "/dev/ttyS0"
       - "/dev/ttyS1"
-      - "/dev/ttyS2"
+      #- "/dev/ttyS2"
       - "/dev/ttyS3"
       - "/dev/ttyS4"
       - "/dev/ttyS5"

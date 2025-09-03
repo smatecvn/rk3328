@@ -1,7 +1,7 @@
 #!/bin/bash
 OUTPUT="docker-compose.override.yml"
 
-echo "version: '3.9'" > $OUTPUT
+echo "#version: '3.9'" > $OUTPUT
 echo "services:" >> $OUTPUT
 echo "  mira:" >> $OUTPUT
 echo "    devices:" >> $OUTPUT

@@ -5,7 +5,7 @@ services:
     image: sonnh911/openwrt:${TAG}
     container_name: mira
     hostname: MIRA
-    restart: always
+    restart: unless-stopped
     dns:
       - 8.8.8.8
       - 8.8.4.4
@@ -14,6 +14,7 @@ services:
       - SYS_ADMIN
       - NET_RAW
       - SYSLOG
+      - CAP_SYS_TIME #for setup time
     security_opt:
       - seccomp=unconfined
     devices:
@@ -26,6 +27,7 @@ services:
       - /proc/device-tree:/host_proc_dt:ro
       - /etc/netplan:/etc/netplan
       - /root/mgwp/:/root/mgwp/
+      - /home/mira:/home/mira
     ports:
       - "80:80"
       - "443:443"
