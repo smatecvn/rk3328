@@ -48,4 +48,5 @@ udevadm trigger
 
 # Copy netplan yaml
 rm /etc/netplan/*.*
+chmod 600 *.yaml
 cp *.yaml /etc/netplan
